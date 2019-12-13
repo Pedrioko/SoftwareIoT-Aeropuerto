@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="py-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"> <a href="" class="nav-link" data-toggle="pill" data-target="#tabone"><i
+                                    class="fa fa-home"></i>Agregar sensor</a> </li>
+                        <li class="nav-item" style=""> <a class="nav-link active" href="" data-toggle="pill"
+                                data-target="#tabtwo"><i class="fa fa-bed"></i> Listado sensores</a> </li>
+
+                    </ul>
+                    <div class="tab-content mt-2">
+                        <div class="tab-pane fade" id="tabone" role="tabpanel">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form id="c_form-h" class="pi-draggable" draggable="true">
+                                            <div class="form-group row">
+                                                <label for="inputnombre" class="col-2 col-form-label">Nombre</label>
+                                                <div class="col-10">
+                                                    <input type="email" class="form-control" id="inputnombre"
+                                                        placeholder="Sensor sala de espera">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputpuerto" class="col-2 col-form-label">Puerto</label>
+                                                <div class="col-10">
+                                                    <input type="email" class="form-control" id="inputpuerto"
+                                                        placeholder="COM00">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputdescripcion">Descripcion</label>
+                                                <textarea class="form-control" id="inputdescripcion"
+                                                    rows="3"></textarea>
+                                            </div>
+                                            <div class="d-flex flex-row-reverse">
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade active show" id="tabtwo" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row  pi-draggable" draggable="true">
+                                        <div class="col-3">
+                                            <ul class="nav nav-pills flex-column" id="listado-tab-boton">
+                                                <li class="nav-item"> <a href="" class="nav-link active"
+                                                        data-toggle="pill" data-target="#sensorone">Tab 1</a> </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="tab-content" id="listado-tab-contenido">
+                                                <div class="tab-pane active fade show" id="sensorone" role="tabpanel"
+                                                    style="">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="list-group pi-draggable">
+                                                                <a href="#"
+                                                                    class="list-group-item list-group-item-action"><span
+                                                                        class="d-flex justify-space-around">
+                                                                        <span class="w-50">Nombre:</span>
+                                                                        <span class="w-50" id="des-nombre"></span>
+                                                                    </span>
+                                                                </a>
+                                                                <a href="#"
+                                                                    class="list-group-item list-group-item-action"><span
+                                                                        class="d-flex justify-space-around">
+                                                                        <span class="w-50">Puerto:</span>
+                                                                        <span class="w-50" id="des-puerto"></span>
+                                                                    </span>
+                                                                </a><a href="#"
+                                                                    class="list-group-item list-group-item-action"><span
+                                                                        class="d-flex justify-space-around">
+                                                                        <span class="w-50">Descripción:</span>
+                                                                        <span class="w-50" id="des-descripcion"></span>
+                                                                    </span>
+                                                                </a></div>
+                                                            <div class="row mt-1">
+                                                                <div class="col-6">
+                                                                    <h5>Datos RT</h5>
+                                                                    <canvas width="100%" id="historico"></canvas>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <h5>Datos historico</h5>
+                                                                    <canvas width="100%"
+                                                                        id="historico-regresion"></canvas>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="table-responsive pi-draggable mt-3"
+                                                                        draggable="true">
+                                                                        <h5>Centroide</h5>
+                                                                        <table class="table table-bordered ">
+                                                                            <thead class="thead-dark">
+                                                                                <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Centroide</th>
+                                                                                    <th>Valor</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th>1</th>
+                                                                                    <td>Mark</td>
+                                                                                    <td>Otto</td>
+                                                                                </tr>
+                                                                                <tr style="">
+                                                                                    <th>2</th>
+                                                                                    <td>Jacob</td>
+                                                                                    <td>Thornton</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">3</th>
+                                                                                    <td>Larry</td>
+                                                                                    <td>the Bird</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="table-responsive pi-draggable mt-3"
+                                                                draggable="true">
+                                                                <h5>Historico</h5>
+                                                                <table class="table table-bordered ">
+                                                                    <thead class="thead-dark">
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Decibeles</th>
+                                                                            <th>Clasificacion de ruido</th>
+                                                                            <th>Fecha de captura</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>1</th>
+                                                                            <td>Mark</td>
+                                                                            <td>Otto</td>
+                                                                            <td>Otto</td>
+                                                                        </tr>
+                                                                        <tr style="">
+                                                                            <th>2</th>
+                                                                            <td>Jacob</td>
+                                                                            <td>Thornton</td>
+                                                                            <td>Thornton</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">3</th>
+                                                                            <td>Larry</td>
+                                                                            <td>the Bird</td>
+                                                                            <td>the Bird</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade active show" id="tabthree" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" cr></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+        <script>
+            $.ajax({
+                url: "/api/sensors",
+                success: res => {
+                    res = JSON.parse(res);
+                    console.log(res);
+                    res.forEach(e => {
+                        agregarSensorLista(e);
+                    });
+                }
+            });
+
+            function agregarSensorLista(sensor) {
+                let id = "sensor" + sensor.id;
+                $("#listado-tab-boton").append('<li class= "nav-item" > <a href="" class="nav-link" data-toggle="pill" data-target="#' + id + '">' + sensor.nombre + '</a> </li> ')
+
+                let htmltoadd = '<div class="tab-pane fade" id="' + id + '" role="tabpanel"  ' +
+                    '                                                       style="">  ' +
+                    '                                                       <div class="row">  ' +
+                    '                                                           <div class="col-12">  ' +
+                    '                                                               <div class="list-group pi-draggable">  ' +
+                    '                                                                   <a href="#"  ' +
+                    '                                                                       class="list-group-item list-group-item-action"><span  ' +
+                    '                                                                           class="d-flex justify-space-around">  ' +
+                    '                                                                           <span class="w-50">Nombre:</span>  ' +
+                    '                                                                           <span class="w-50" id="des-nombre">' + sensor.nombre + '</span>  ' +
+                    '                                                                       </span>  ' +
+                    '                                                                   </a>  ' +
+                    '                                                                   <a href="#"  ' +
+                    '                                                                       class="list-group-item list-group-item-action"><span  ' +
+                    '                                                                           class="d-flex justify-space-around">  ' +
+                    '                                                                           <span class="w-50">Puerto:</span>  ' +
+                    '                                                                           <span class="w-50" id="des-puerto">' + sensor.puerto + '</span>  ' +
+                    '                                                                       </span>  ' +
+                    '                                                                   </a><a href="#"  ' +
+                    '                                                                       class="list-group-item list-group-item-action"><span  ' +
+                    '                                                                           class="d-flex justify-space-around">  ' +
+                    '                                                                           <span class="w-50">Descripción:</span>  ' +
+                    '                                                                           <span class="w-50" id="des-descripcion">' + sensor.descripcion + '</span>  ' +
+                    '                                                                       </span>  ' +
+                    '                                                                   </a></div>  ' +
+                    '                                                               <div class="row mt-1">  ' +
+                    '                                                                   <div class="col-6">  ' +
+                    '                                                                       <h5>Datos RT</h5>  ' +
+                    '                                                                       <canvas width="100%" id="canvas-historico-' + sensor.id + '"></canvas>  ' +
+                    '                                                                   </div>  ' +
+                    '                                                                   <div class="col-6">  ' +
+                    '                                                                       <h5>Datos historico</h5>  ' +
+                    '                                                                       <canvas width="100%"  ' +
+                    '                                                                           id="canvas-historico-regresion-' + sensor.id + '"></canvas>  ' +
+                    '                                                                   </div>  ' +
+                    '                                                                   <div class="col-12">  ' +
+                    '                                                                       <div class="table-responsive pi-draggable mt-3"  ' +
+                    '                                                                           draggable="true">  ' +
+                    '                                                                           <h5>Centroide</h5>  ' +
+                    '                                                                           <table class="table table-bordered " id="tabla-centroides-' + sensor.id + '">  ' +
+                    '                                                                               <thead class="thead-dark">  ' +
+                    '                                                                                   <tr>  ' +
+                    '                                                                                       <th>#</th>  ' +
+                    '                                                                                       <th>Centroide</th>  ' +
+                    '                                                                                       <th>Valor</th>  ' +
+                    '                                                                                   </tr>  ' +
+                    '                                                                               </thead>  ' +
+                    '                                                                               <tbody>  ';
+
+
+                htmltoadd += '                                                                               </tbody>  ' +
+                    '                                                                           </table>  ' +
+                    '                                                                       </div>  ' +
+                    '                                                                   </div>  ' +
+                    '                                                               </div>  ' +
+                    '                                                               <div class="table-responsive pi-draggable mt-3"  ' +
+                    '                                                                   draggable="true">  ' +
+                    '                                                                   <h5>Historico</h5>  ' +
+                    '                                                                   <table class="table table-bordered id="tabla-historico-' + sensor.id + '">  ' +
+                    '                                                                       <thead class="thead-dark" style="display: block;">  ' +
+                    '                                                                           <tr style=" width: 100%;    display: flex;    justify-content: space-between;    padding-right: 18px;">  ' +
+                    '                                                                               <th style="width:10%;">#</th>  ' +
+                    '                                                                               <th style="width:20%;">Decibeles</th>  ' +
+                    '                                                                               <th style="width:35%;">Clasificacion de ruido</th>  ' +
+                    '                                                                               <th style="width:35%;">Fecha de captura</th>  ' +
+                    '                                                                           </tr>  ' +
+                    '                                                                       </thead>  ' +
+                    '                                                                       <tbody style="display: block;  height: 300px; overflow-y: auto; overflow-x: hidden;">  ';
+                sensor['historial'].forEach((item, i) => {
+                    htmltoadd += '   <tr  style=" width: 100%;    display: flex;    justify-content: space-between;">  ' +
+                        '       <td style="width:10%;">' + (i + 1) + '</td>  ' +
+                        '       <td style="width:20%;">' + item["decibeles"] + ' Db</td>  ' +
+                        '       <td style="width:35%;">' + item["clasificacionRuido"] + '</td>  ' +
+                        '       <td style="width:35%;">' + item["fecha_creacion"] + '</td>  ' +
+                        '  </tr>  ';
+                })
+
+                htmltoadd += '                                                                       </tbody>  ' +
+                    '                                                                   </table>  ' +
+                    '                                                               </div>  ' +
+                    '                                                           </div>  ' +
+                    '                                                       </div>  ' +
+                    '                                                  </div>  ';
+
+                $("#listado-tab-contenido").append(htmltoadd);
+            }
+        </script>
+    </div>
+</body>
+
+
+</html>
