@@ -30,6 +30,7 @@ public class Sensor {
     private List<Dato> historial = new ArrayList<>();
 
     public Sensor() {
+        this.id = -1L;
     }
 
     public Sensor(String nombre, String descripcion, String puerto) {

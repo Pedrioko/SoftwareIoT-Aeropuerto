@@ -235,7 +235,7 @@
                     '                                                               <div class="row mt-1">  ' +
                     '                                                                   <div class="col-6">  ' +
                     '                                                                       <h5>Datos RT</h5>  ' +
-                    '                                                                       <canvas width="100%" id="canvas-historico-' + sensor.id + '"></canvas>  ' +
+                    '                                                                       <canvas width="100%" id="canvas-rt-' + sensor.id + '"></canvas>  ' +
                     '                                                                   </div>  ' +
                     '                                                                   <div class="col-6">  ' +
                     '                                                                       <h5>Datos historico</h5>  ' +
@@ -249,9 +249,7 @@
                     '                                                                           <table class="table table-bordered " id="tabla-centroides-' + sensor.id + '">  ' +
                     '                                                                               <thead class="thead-dark">  ' +
                     '                                                                                   <tr>  ' +
-                    '                                                                                       <th>#</th>  ' +
                     '                                                                                       <th>Centroide</th>  ' +
-                    '                                                                                       <th>Valor</th>  ' +
                     '                                                                                   </tr>  ' +
                     '                                                                               </thead>  ' +
                     '                                                                               <tbody>  ';
@@ -292,6 +290,75 @@
                     '                                                  </div>  ';
 
                 $("#listado-tab-contenido").append(htmltoadd);
+                $.ajax({
+                    url: "/api/sensor/" + sensor.id + "/regresion",
+                    success: res => {
+                        res = JSON.parse(res);
+                        console.log(res);
+                        var ctx = document.getElementById('canvas-historico-regresion-' + sensor.id).getContext('2d');
+                        var stackedLine = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: sensor.historial.reverse().map(e => e["fecha_creacion"]),
+                                datasets: [{
+                                    label: 'Decibeles',
+                                    backgroundColor: "rgba(0,0,0,0.0)",
+                                    borderColor: "red",
+                                    data: sensor.historial.reverse().map(e => e["decibeles"])
+                                }, {
+                                    label: 'Regresion',
+                                    backgroundColor: "rgba(0,0,0,0.0)",
+                                    borderColor: "blue",
+                                    data: sensor.historial.reverse().map((e, index) => res["m"] * index + res["c"])
+
+                                }]
+                            }
+                        })
+
+                    }
+                });
+
+                setInterval(function () {
+
+                    $.ajax({
+                        url: "/api/sensor/" + sensor.id,
+                        success: res => {
+                            res = JSON.parse(res);
+                            var datos = res.historial.reverse().slice(0, 40);
+                            var ctx = document.getElementById('canvas-rt-' + sensor.id).getContext('2d');
+                            var stackedLine = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: datos.map(e => e["fecha_creacion"]),
+                                    datasets: [{
+                                        label: 'Decibeles',
+                                        backgroundColor: "red",
+                                        borderColor: "red",
+                                        data: datos.map(e => e["decibeles"])
+                                    }]
+                                }
+                            });
+                        }
+                    })
+                }, 3000)
+
+                $.ajax({
+                    url: "/api/sensor/" + sensor.id + "/clusters",
+                    success: res => {
+                        res = JSON.parse(res);
+                        console.log(res);
+                        res.forEach((e, i) => {
+                            $("#tabla-centroides-" + sensor.id + " thead tr").append(" <th> " + e["nombre"] + "</th> ");
+                            var html = '   <tr>  ' +
+                                '       <td>Valor' + i + '</td>'
+                            e.values.forEach(v => {
+                                html += '<td>' + v + '</td>'
+                            })
+                            html += "</tr>"
+                            $("#tabla-centroides-" + sensor.id + " tbody").append(html);
+                        });
+                    }
+                });
             }
         </script>
     </div>
