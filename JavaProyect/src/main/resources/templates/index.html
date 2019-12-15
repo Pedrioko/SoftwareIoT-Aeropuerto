@@ -83,22 +83,43 @@
                 </div>
             </div>
         </div>
+        <div class="modal" id="mymodal">
+            <div class="spinner-border text-danger" style="width: 9rem; height: 9rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" cr></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
         <script>
+            $('#mymodal').modal({ backdrop: 'static', keyboard: false })
             load();
+
+            function getFormData($form){
+                var unindexed_array = $form.serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function(n, i){
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
 
             $("#form-add").submit(e => {
                 e.preventDefault();
+                $('#mymodal').modal({ backdrop: 'static', keyboard: false })
+
                 $.ajax({
                     url: "/api/sensor",
                     type: "POST",
-                    data: $(this).serialize(),
+                    contentType: "text/plain",
+                    data:  JSON.stringify( getFormData($("#form-add")) ),
                     success: res => {
-                        alert(res)
                         load();
+                        $('#mymodal').modal('hide')
+                        alert(res)
                     }
                 });
             })
@@ -113,6 +134,8 @@
                         res.forEach(e => {
                             agregarSensorLista(e);
                         });
+                        $('#mymodal').modal('hide')
+
                     }
                 });
 
@@ -148,11 +171,11 @@
                     '                                                                       </span>  ' +
                     '                                                                   </a></div>  ' +
                     '                                                               <div class="row mt-1">  ' +
-                    '                                                                   <div class="col-6">  ' +
+                    '                                                                   <div class="col-6" style="max-height: 350px;">  ' +
                     '                                                                       <h5>Datos RT</h5>  ' +
                     '                                                                       <canvas width="100%" id="canvas-rt-' + sensor.id + '"></canvas>  ' +
                     '                                                                   </div>  ' +
-                    '                                                                   <div class="col-6">  ' +
+                    '                                                                   <div class="col-6" style="max-height: 350px;">  ' +
                     '                                                                       <h5>Datos historico</h5>  ' +
                     '                                                                       <canvas width="100%"  ' +
                     '                                                                           id="canvas-historico-regresion-' + sensor.id + '"></canvas>  ' +

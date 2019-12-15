@@ -14,6 +14,7 @@ import com.edu.udec.aeropuerto.domain.Dato;
 import com.edu.udec.aeropuerto.domain.Sensor;
 import com.edu.udec.aeropuerto.domain.enums.RangoRuido;
 import com.edu.udec.aeropuerto.math.FastV;
+import com.edu.udec.aeropuerto.services.RealtimeService;
 import com.google.gson.Gson;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -31,12 +32,14 @@ import static spark.Spark.*;
 
 public class Controller {
     private final SensorRepository sensorRepo;
+    private final RealtimeService realtimeService;
     StringWriter stringWriter;
     Configuration configuration = new Configuration(new Version(2, 3, 0));
 
     public Controller() {
         configuration.setClassForTemplateLoading(Controller.class, "/templates/");
         sensorRepo = App.Ctx.getBean(SensorRepository.class);
+        realtimeService = App.Ctx.getBean(RealtimeService.class);
         get("/", (req, res) -> {
             StringWriter writer = new StringWriter();
             Template template = configuration.getTemplate("index.html");
@@ -115,8 +118,12 @@ public class Controller {
         });
 
         post("/api/sensor", (req, res) -> {
-            Sensor sensor = new Gson().fromJson(req.body(), Sensor.class);
+            String body = req.body();
+            Sensor sensor = new Gson().fromJson(body, Sensor.class);
+            if (sensor.getHistorial()==null)
+                sensor.setHistorial(new ArrayList<>());
             sensorRepo.save(sensor);
+            realtimeService.init();
             return new Gson().toJson(new StandardResponse(StatusResponse.SUCCESS));
         });
 
