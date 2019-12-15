@@ -1,4 +1,4 @@
-# SoftwareIoT-Aeropuerto
+# Software IoT-Aeropuerto
 
 Desarrollar un sistema de seguimiento del nivel de ruido de un aeropuerto haciendo uso de
  tecnología Arduino (real y simulada) y considerando la arquitectura de 4 capas de IoT. El sistema de seguimiento debe ser implementado usando el microframework Spark de Java en conjunto con la librería weka y el gestor de bases de datos MongoDB. El sistema debe permitir realizar las siguientes operaciones:
