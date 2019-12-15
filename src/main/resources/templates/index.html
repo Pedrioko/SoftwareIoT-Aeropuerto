@@ -26,24 +26,24 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form id="c_form-h" class="pi-draggable" draggable="true">
+                                        <form id="form-add" class="pi-draggable" draggable="true">
                                             <div class="form-group row">
                                                 <label for="inputnombre" class="col-2 col-form-label">Nombre</label>
                                                 <div class="col-10">
-                                                    <input type="email" class="form-control" id="inputnombre"
-                                                        placeholder="Sensor sala de espera">
+                                                    <input type="text" class="form-control" name="nombre"
+                                                        id="inputnombre" placeholder="Sensor sala de espera">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputpuerto" class="col-2 col-form-label">Puerto</label>
                                                 <div class="col-10">
-                                                    <input type="email" class="form-control" id="inputpuerto"
-                                                        placeholder="COM00">
+                                                    <input type="text" class="form-control" name="puerto"
+                                                        id="inputpuerto" placeholder="COM00">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputdescripcion">Descripcion</label>
-                                                <textarea class="form-control" id="inputdescripcion"
+                                                <textarea class="form-control" name="descripcion" id="inputdescripcion"
                                                     rows="3"></textarea>
                                             </div>
                                             <div class="d-flex flex-row-reverse">
@@ -60,117 +60,13 @@
                                     <div class="row  pi-draggable" draggable="true">
                                         <div class="col-3">
                                             <ul class="nav nav-pills flex-column" id="listado-tab-boton">
-                                                <li class="nav-item"> <a href="" class="nav-link active"
-                                                        data-toggle="pill" data-target="#sensorone">Tab 1</a> </li>
+
                                             </ul>
                                         </div>
                                         <div class="col-9">
                                             <div class="tab-content" id="listado-tab-contenido">
-                                                <div class="tab-pane active fade show" id="sensorone" role="tabpanel"
-                                                    style="">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="list-group pi-draggable">
-                                                                <a href="#"
-                                                                    class="list-group-item list-group-item-action"><span
-                                                                        class="d-flex justify-space-around">
-                                                                        <span class="w-50">Nombre:</span>
-                                                                        <span class="w-50" id="des-nombre"></span>
-                                                                    </span>
-                                                                </a>
-                                                                <a href="#"
-                                                                    class="list-group-item list-group-item-action"><span
-                                                                        class="d-flex justify-space-around">
-                                                                        <span class="w-50">Puerto:</span>
-                                                                        <span class="w-50" id="des-puerto"></span>
-                                                                    </span>
-                                                                </a><a href="#"
-                                                                    class="list-group-item list-group-item-action"><span
-                                                                        class="d-flex justify-space-around">
-                                                                        <span class="w-50">Descripción:</span>
-                                                                        <span class="w-50" id="des-descripcion"></span>
-                                                                    </span>
-                                                                </a></div>
-                                                            <div class="row mt-1">
-                                                                <div class="col-6">
-                                                                    <h5>Datos RT</h5>
-                                                                    <canvas width="100%" id="historico"></canvas>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <h5>Datos historico</h5>
-                                                                    <canvas width="100%"
-                                                                        id="historico-regresion"></canvas>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="table-responsive pi-draggable mt-3"
-                                                                        draggable="true">
-                                                                        <h5>Centroide</h5>
-                                                                        <table class="table table-bordered ">
-                                                                            <thead class="thead-dark">
-                                                                                <tr>
-                                                                                    <th>#</th>
-                                                                                    <th>Centroide</th>
-                                                                                    <th>Valor</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <th>1</th>
-                                                                                    <td>Mark</td>
-                                                                                    <td>Otto</td>
-                                                                                </tr>
-                                                                                <tr style="">
-                                                                                    <th>2</th>
-                                                                                    <td>Jacob</td>
-                                                                                    <td>Thornton</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <th scope="row">3</th>
-                                                                                    <td>Larry</td>
-                                                                                    <td>the Bird</td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="table-responsive pi-draggable mt-3"
-                                                                draggable="true">
-                                                                <h5>Historico</h5>
-                                                                <table class="table table-bordered ">
-                                                                    <thead class="thead-dark">
-                                                                        <tr>
-                                                                            <th>#</th>
-                                                                            <th>Decibeles</th>
-                                                                            <th>Clasificacion de ruido</th>
-                                                                            <th>Fecha de captura</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th>1</th>
-                                                                            <td>Mark</td>
-                                                                            <td>Otto</td>
-                                                                            <td>Otto</td>
-                                                                        </tr>
-                                                                        <tr style="">
-                                                                            <th>2</th>
-                                                                            <td>Jacob</td>
-                                                                            <td>Thornton</td>
-                                                                            <td>Thornton</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">3</th>
-                                                                            <td>Larry</td>
-                                                                            <td>the Bird</td>
-                                                                            <td>the Bird</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -192,16 +88,35 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
         <script>
-            $.ajax({
-                url: "/api/sensors",
-                success: res => {
-                    res = JSON.parse(res);
-                    console.log(res);
-                    res.forEach(e => {
-                        agregarSensorLista(e);
-                    });
-                }
-            });
+            load();
+
+            $("#form-add").submit(e => {
+                e.preventDefault();
+                $.ajax({
+                    url: "/api/sensor",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: res => {
+                        alert(res)
+                        load();
+                    }
+                });
+            })
+            function load() {
+                $.ajax({
+                    url: "/api/sensors",
+                    success: res => {
+                        res = JSON.parse(res);
+                        console.log(res);
+                        $("#listado-tab-boton").empty();
+                        $("#listado-tab-contenido").empty();
+                        res.forEach(e => {
+                            agregarSensorLista(e);
+                        });
+                    }
+                });
+
+            }
 
             function agregarSensorLista(sensor) {
                 let id = "sensor" + sensor.id;
