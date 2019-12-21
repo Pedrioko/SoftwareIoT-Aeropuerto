@@ -170,12 +170,20 @@
                     '                                                                           <span class="w-50" id="des-descripcion">' + sensor.descripcion + '</span>  ' +
                     '                                                                       </span>  ' +
                     '                                                                   </a></div>  ' +
+                    '                                                               <div class="list-group pi-draggable mt-2 mb-2">  ' +
+                    '                                                                   <a href="#"  ' +
+                    '                                                                       class="list-group-item list-group-item-action"><span  ' +
+                    '                                                                           class="d-flex justify-space-around">  ' +
+                    '                                                                           <span class="w-50 h3">Decibeles Actuales</span>  ' +
+                    '                                                                           <span class="w-50 h3" id="des-decibeles-actuales'+id+'">' + sensor.descripcion + '</span>  ' +
+                    '                                                                       </span>  ' +
+                    '                                                                   </a></div>  ' +
                     '                                                               <div class="row mt-1">  ' +
-                    '                                                                   <div class="col-6" style="max-height: 350px;">  ' +
+                    '                                                                   <div class="col-6" style="max-height: 450px;">  ' +
                     '                                                                       <h5>Datos RT</h5>  ' +
                     '                                                                       <canvas width="100%" id="canvas-rt-' + sensor.id + '"></canvas>  ' +
                     '                                                                   </div>  ' +
-                    '                                                                   <div class="col-6" style="max-height: 350px;">  ' +
+                    '                                                                   <div class="col-6" style="max-height: 450px;">  ' +
                     '                                                                       <h5>Datos historico</h5>  ' +
                     '                                                                       <canvas width="100%"  ' +
                     '                                                                           id="canvas-historico-regresion-' + sensor.id + '"></canvas>  ' +
@@ -250,6 +258,9 @@
                                     data: sensor.historial.reverse().map((e, index) => res["m"] * index + res["c"])
 
                                 }]
+                            },
+                            options: {
+                                animation:false
                             }
                         })
 
@@ -263,6 +274,9 @@
                         success: res => {
                             res = JSON.parse(res);
                             var datos = res.historial.reverse().slice(0, 40);
+                            var drt = datos[0]["decibeles"];
+                            var ele = $('#des-decibeles-actuales'+id)
+                            ele.html(drt + " dB");
                             var ctx = document.getElementById('canvas-rt-' + sensor.id).getContext('2d');
                             var stackedLine = new Chart(ctx, {
                                 type: 'line',
@@ -274,6 +288,9 @@
                                         borderColor: "red",
                                         data: datos.map(e => e["decibeles"])
                                     }]
+                                },
+                                options: {
+                                    animation:false
                                 }
                             });
                         }

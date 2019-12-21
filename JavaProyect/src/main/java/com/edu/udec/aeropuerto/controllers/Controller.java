@@ -103,7 +103,7 @@ public class Controller {
                 FastV fv = new FastV(historial.size());
 
                 historial.forEach(item -> {
-                    fv.addPair(historial.indexOf(item), (int) item.getDecibeles());
+                    fv.addPair((int) item.getFecha_creacion().getTime(), (int) item.getDecibeles());
                 });
                 double[] coefficients = fv.getFunction();
                 return "{\"m\":" + coefficients[0] + ",\"c\":" + coefficients[2] + "}";
